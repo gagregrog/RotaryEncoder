@@ -27,11 +27,6 @@ void RotaryEncoder::_setup(uint8_t pinA, uint8_t pinB, bool useInterrupts)
   _useInterrupts = useInterrupts;
 }
 
-void RotaryEncoder::_pinDidChange()
-{
-  _encoder.checkPins(digitalRead(_pinA), digitalRead(_pinB));
-}
-
 // Public Members
 void RotaryEncoder::begin(eventHandler fn) {
   if (_eventHandler) return;
@@ -39,11 +34,6 @@ void RotaryEncoder::begin(eventHandler fn) {
   _eventHandler = fn;
   pinMode(_pinA, INPUT_PULLUP);
   pinMode(_pinB, INPUT_PULLUP);
-
-  if (_useInterrupts) {
-    attachInterrupt(digitalPinToInterrupt(_pinA), _pinDidChange, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(_pinB), _pinDidChange, CHANGE);
-  }
 }
 
 void RotaryEncoder::update()
@@ -51,14 +41,19 @@ void RotaryEncoder::update()
   if (!_eventHandler) {
     return;
   }
-  
+
   if (!_useInterrupts) {
     // read the pins manually since there are no interrupts
-    _pinDidChange();
+    read();
   }
 
   EC11Event event;
   if (_encoder.read(&event)) {
     _eventHandler(event.type);
   }
+}
+
+void RotaryEncoder::read()
+{
+  _encoder.checkPins(digitalRead(_pinA), digitalRead(_pinB));
 }

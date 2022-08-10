@@ -20,6 +20,7 @@ class RotaryEncoder
 
     void begin(eventHandler fn);
     void update();
+    void read();
   private:
     EC11 _encoder;
     uint8_t _pinA;
@@ -28,7 +29,6 @@ class RotaryEncoder
     eventHandler _eventHandler;
 
     void _setup(uint8_t pinA, uint8_t pinB, bool useInterrupts);
-    void _pinDidChange();
 };
 
 #endif

@@ -26,11 +26,20 @@ void handleEvent(EC11Event::Type eventType) {
   Serial.println(eventType == EC11Event::StepCW ? "CW" : "CCW");
 }
 
+// if using interrupts
+void readEncoder() {
+  encoder.read();
+}
+
 void setup() {
   Serial.begin(115200);
 
   // handleEvent will be called any time the encoder is rotated
   encoder.begin(handleEvent);
+
+  // if using interrupts
+  // attachInterrupt(digitalPinToInterrupt(pinA), readEncoder, CHANGE);
+  // attachInterrupt(digitalPinToInterrupt(pinB), readEncoder, CHANGE);
 }
 
 void loop() {
