@@ -1,0 +1,22 @@
+{
+  "name": "RotaryEncoder",
+  "version": "1.0.0",
+  "description": "Easily respond to rotary encoder events.",
+  "keywords": "encoder, button, press, callback",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RobertMcReed/RotaryEncoder.git"
+  },
+  "authors": [
+    {
+      "name": "Robert Reed",
+      "email": "robert.mc.reed@gmail.com",
+      "url": "https://github.com/RobertMcReed",
+      "maintainer": true
+    }
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/RobertMcReed/RotaryEncoder",
+  "frameworks": "arduino",
+  "platforms": "*"
+}
