@@ -10,7 +10,7 @@
 #include "Arduino.h"
 #include "ec11.h"
 
-typedef void (*eventHandler) (EC11Event::Type);
+typedef void (*eventHandler) (EC11Event);
 
 class RotaryEncoder
 {

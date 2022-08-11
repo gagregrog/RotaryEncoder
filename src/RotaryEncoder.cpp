@@ -49,7 +49,7 @@ void RotaryEncoder::update()
 
   EC11Event event;
   if (_encoder.read(&event)) {
-    _eventHandler(event.type);
+    _eventHandler(event);
   }
 }
 
